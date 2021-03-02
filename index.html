@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+
+    <!--CSS File-->
+    <link rel="stylesheet" href="src/styles.css" />
+
+    <!--Font-Family-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet" />
+
+    <!--Axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>How's the weather?</h1>
+
+        <!--Form and Search Button-->
+        <ul>
+            <li>
+                <form>
+                    <input type="text" class="form-control" placeholder="Type your city" id="city-input" />
+                </form>
+            </li>
+            <li>
+                <button type="button" class="btn btn-light" id="search">
+                    Search
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-light" id="current-location">
+                    My location
+                </button>
+            </li>
+        </ul>
+
+        <p id="time"></p>
+        <h3 id="city">City Weather</h3>
+        <br />
+
+        <!--Today & Tomorrow Weather-->
+        <table class="table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col" id="today"></th>
+                    <th scope="col" id="tomorrow"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="media/cloud.png" alt="cloud" /></td>
+                    <td><img src="media/cloud.png" alt="cloud" /></td>
+                </tr>
+                <tr>
+                    <td id="temp-today">ºC</td>
+                    <td id="temp-tomorrow">ºC</td>
+                </tr>
+
+                <tr>
+                    <td id="humidity">💧</td>
+                    <td>💧</td>
+                </tr>
+
+                <tr>
+                    <td id="description">☁</td>
+                    <td>☁</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+        <hr />
+        <p id="madeby">Made by Mariana Chambel</p>
+    </div>
+    <!--Javascript-->
+    <script src="src/index.js"></script>
+</body>
+
+</html>
