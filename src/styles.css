@@ -10,6 +10,7 @@
   border-radius: 15px;
   box-shadow: 1px 3px 6px #8d8d8d;
   margin: 20px;
+  max-width: 600px;
 }
 .search {
   margin: 20px;
@@ -26,9 +27,18 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  font-weight: 100;
+  font-size: 15px;
+}
+
+#forecast {
+  margin: 20px 10px 0px 10px;
+}
 .form-control {
   background-color: #ffffff;
   border: 1px solid #ffffff;
+  width: 105%;
 }
 
 .btn {
@@ -42,10 +52,6 @@ h1 {
   border: #00bcf2;
   color: #ffffff;
   transition: 1ms ease-in-out;
-}
-
-.table-borderless {
-  margin: 0 auto;
 }
 
 td,
@@ -65,13 +71,12 @@ td {
 }
 
 hr {
-  display: block;
   margin: 0 auto;
   width: 85%;
   padding: 1px;
   background-color: #ffffff;
   opacity: 0.5;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 a {
@@ -85,11 +90,6 @@ li {
 
 #description {
   text-transform: capitalize;
-}
-
-.today-weather img {
-  height: 70px;
-  width: 70px;
 }
 
 .today-weather .active {
@@ -116,13 +116,11 @@ li {
 }
 
 #temp-today {
-  font-size: 50px;
-  line-height: 1;
+  font-size: 40px;
 }
 
 #units {
   position: relative;
-  top: -34px;
 }
 
 .btn#current-location {

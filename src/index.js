@@ -1,4 +1,5 @@
 let now = new Date();
+
 //Hours & Minutes (ex:09 while <10 instead of 9)
 let currentHour = now.getHours();
 if (currentHour < 10) {
@@ -7,6 +8,19 @@ if (currentHour < 10) {
 let currentMinutes = now.getMinutes();
 if (currentMinutes < 10) {
   currentMinutes = `0${currentMinutes}`;
+}
+
+function formatHours(timestamp){
+  let now=new Date(timestamp);
+let currentHour = now.getHours();
+if (currentHour < 10) {
+  currentHour = `0${currentHour}`;
+}
+let currentMinutes = now.getMinutes();
+if (currentMinutes < 10) {
+  currentMinutes = `0${currentMinutes}`;
+}
+return `${currentHour}:${currentMinutes}`
 }
 
 let months = [
@@ -61,11 +75,44 @@ function showTemp(response){
   wind.innerHTML = `🌬 ${Math.round(response.data.wind.speed)} Km/h`;
   
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
+function showNextHours(response) {
+  let nextHoursForecast = document.querySelector("#forecast");
+  nextHoursForecast.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 4; index++) {
+    forecast = response.data.list[index];
+    nextHoursForecast.innerHTML += `
+    <div class="col-3">
+      <h3>
+        ${formatHours(forecast.dt * 1000)}
+      </h3>
+      <img
+        src="http://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png"
+      />
+      <div class="next-weather-temperature">
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong>
+        ${Math.round(forecast.main.temp_min)}°
+      </div>
+    </div>
+  `;
+  }
+}
+
 function search(city) {
   let apiKey = "b807e5d3242a76539b823cd416c767ae";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showNextHours);
 }
 
 function searchButton(event) {
@@ -93,17 +140,16 @@ currentLocation.addEventListener("click", myCity);
 function fahrTemp(event) {
   event.preventDefault();
   let temp = document.querySelector("#temp-today");
-
   celsius.classList.remove("active");
   fahrenheit.classList.add("active");
-  let fahrenheiTemp = (celsiusTemp * 9) / 5 + 32;
-  temp.innerHTML = Math.round(fahrenheiTemp);
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  temp.innerHTML = Math.round(fahrenheitTemp);
 }
 
 function celsiusTemp(event) {
   event.preventDefault();
-  celsius.classList.add("active");
   fahrenheit.classList.remove("active");
+  celsius.classList.add("active");  
   let temp = document.querySelector("#temp-today");
   temp.innerHTML = Math.round(celsiusTemperature);
 }

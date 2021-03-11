@@ -40,7 +40,7 @@
         <!--Form and Search Button-->
         <div class="search">
             <div class="row">
-                <div class="col-6">
+                <div class="clearfix col-6">
                     <form>
                         <input type="text" class="form-control" placeholder="Type your city" id="city-input" />
                     </form>
@@ -67,17 +67,19 @@
         <div class="row">
             <div class="col-6">
                 <div class="clearfix today-weather">
-                    <img src="" alt="weather" id="weather-icon" class="float-left">
-            <div class="float-left">
-                            <strong id="temp-today"></strong>
-                                <span class="units">
-                                    <a href="#" id="celsius" class="active">ºC</a> / <a href="#" id="fahrenheit">ºF</a>
-                                </span>
-                        </div>
+                    <img src="" alt="weather" id="weather-icon" class="float-left"/>
+                
+                <div class="float-left">
+                    <strong id="temp-today"></strong>
+                    <span class="units">
+                        <a href="#" id="celsius" class="active">ºC</a> /
+                        <a href="#" id="fahrenheit">ºF</a>
+                    </span>
+                </div>
                 </div>
             </div>
 
-            <div class="weather-results col-6">
+            <div class="col-6">
                 <ul>
                     <li id="description"></li>
                     <li id="humidity"></li>
@@ -85,6 +87,7 @@
                 </ul>
             </div>
         </div>
+        <div class="row nextHours" id="forecast"></div>
         <br />
         <hr />
         <p id="madeby">Coded by Mariana Chambel and hosted on <a href="https://wonderful-spence-71ddf0.netlify.app/">Netlify</a></p>
