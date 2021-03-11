@@ -66,19 +66,17 @@
         <!--Today & Tomorrow Weather-->
         <div class="row">
             <div class="col-6">
-                <div class="clearfix today-weather">
+                <div class="d-flex today-weather">
                     <img src="" alt="weather" id="weather-icon" class="float-left"/>
-                
-                <div class="float-left">
-                    <strong id="temp-today"></strong>
-                    <span class="units">
-                        <a href="#" id="celsius" class="active">ºC</a> /
-                        <a href="#" id="fahrenheit">ºF</a>
-                    </span>
-                </div>
+                    <div class="float-left" id="tempUnits">
+                        <strong id="temp-today"></strong>
+                        <span class="units">
+                            <a href="#" id="celsius" class="active"> ºC</a> /
+                            <a href="#" id="fahrenheit">ºF</a>
+                        </span>
+                    </div>
                 </div>
             </div>
-
             <div class="col-6">
                 <ul>
                     <li id="description"></li>

@@ -18,6 +18,15 @@
 .city-name {
   margin: 20px;
 }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Comfortaa", cursive;
+}
+
+#tempUnits {
+  display: inline-flex;
+}
 
 h1 {
   margin: 20px;
@@ -32,9 +41,6 @@ h3 {
   font-size: 15px;
 }
 
-#forecast {
-  margin: 20px 10px 0px 10px;
-}
 .form-control {
   background-color: #ffffff;
   border: 1px solid #ffffff;
@@ -116,11 +122,8 @@ li {
 }
 
 #temp-today {
-  font-size: 40px;
-}
-
-#units {
-  position: relative;
+  font-size: 60px;
+  font-family: "Comfortaa", cursive;
 }
 
 .btn#current-location {
@@ -135,6 +138,11 @@ li {
   border: #fff;
   color: #00bcf2;
   transition: 1ms ease-in-out;
+}
+
+#forecast {
+  font-family: "Comfortaa", cursive;
+  margin: 20px 10px 0px 10px;
 }
 
 #madeby {

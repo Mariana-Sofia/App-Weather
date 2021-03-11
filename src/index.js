@@ -66,16 +66,15 @@ function showTemp(response){
   let wind = document.querySelector("#wind");
   let icon = document.querySelector("#weather-icon");
 
-  celsiusTemp=response.data.main.temp;
+  celsiusTemperature=response.data.main.temp;
 
-  temperature.innerHTML=Math.round(celsiusTemp);
+  temperature.innerHTML=Math.round(celsiusTemperature);
   city.innerHTML=response.data.name;
   description.innerHTML =`🌞 ${response.data.weather[0].description}`;
   humidity.innerHTML = `💧 ${response.data.main.humidity}%`;
   wind.innerHTML = `🌬 ${Math.round(response.data.wind.speed)} Km/h`;
   
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function showNextHours(response) {
@@ -142,7 +141,7 @@ function fahrTemp(event) {
   let temp = document.querySelector("#temp-today");
   celsius.classList.remove("active");
   fahrenheit.classList.add("active");
-  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
   temp.innerHTML = Math.round(fahrenheitTemp);
 }
 
