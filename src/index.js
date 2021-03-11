@@ -117,6 +117,8 @@ function search(city) {
 function searchButton(event) {
   event.preventDefault();
   let searchCity = document.querySelector("#city-input");
+  fahrenheit.classList.remove("active");
+  celsius.classList.add("active");
   search(searchCity.value);
 }
 
