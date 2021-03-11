@@ -31,10 +31,11 @@
 
 <body>
     <div class="container">
-        <div class="weather-app-wrap">
-            <div class="title">
-                <h1>How's the weather?</h1>
-            </div>
+        <div class="weather-app">
+            <div class="weather-app-wrap">
+                <div class="title">
+                    <h1>How's the weather?</h1>
+                </div>
             
         <!--Form and Search Button-->
         <div class="search">
@@ -59,18 +60,20 @@
 
         
         <div class="city-name">
-            <p id="time"></p>
+            <span id="time"></span>
             <h3 id="city"></h3>
         </div>
         <!--Today & Tomorrow Weather-->
         <div class="row">
-            <div class="today-weather col-6">
-                <img src="" alt="weather" id="weather-icon" class="float-left">
-                <div class="float-left">
-                    <strong id="temp-today"></strong>
-                    <span class="units">
-                        <a href="#" id="celsius" class="active">ºC</a> / <a href="#" id="fahrenheit">ºF</a>
-                    </span>
+            <div class="col-6">
+                <div class="clearfix today-weather">
+                    <img src="" alt="weather" id="weather-icon" class="float-left">
+            <div class="float-left">
+                            <strong id="temp-today"></strong>
+                                <span class="units">
+                                    <a href="#" id="celsius" class="active">ºC</a> / <a href="#" id="fahrenheit">ºF</a>
+                                </span>
+                        </div>
                 </div>
             </div>
 
@@ -84,11 +87,12 @@
         </div>
         <br />
         <hr />
-        </div>
-        
-    </div>
-    <p id="madeby">Coded by Mariana Chambel and hosted on <a href="https://wonderful-spence-71ddf0.netlify.app/">Netlify</a></p>
+        <p id="madeby">Coded by Mariana Chambel and hosted on <a href="https://wonderful-spence-71ddf0.netlify.app/">Netlify</a></p>
         <p id="madeby"><a href="https://github.com/Mariana-Sofia/App-Weather">Check out on GitHub</a></p>
+        </div>
+        </div>
+    </div>
+    
     <!--Javascript-->
     <script src="src/index.js"></script>
 </body>

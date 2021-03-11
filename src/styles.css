@@ -1,4 +1,4 @@
-.container {
+.weather-app {
   max-width: 600px;
 }
 
@@ -71,15 +71,43 @@ hr {
   padding: 1px;
   background-color: #ffffff;
   opacity: 0.5;
+  margin-top: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+#description {
+  text-transform: capitalize;
+}
+
+.today-weather img {
+  height: 70px;
+  width: 70px;
+}
+
+.today-weather .active {
+  color: rgb(0, 0, 0);
+  cursor: default;
+  font-weight: bold;
+}
+
+.today-weather.active:hover {
+  text-decoration: none;
 }
 
 #time {
-  text-align: center;
+  color: #9babb9;
   font-weight: 100;
 }
 
 #city {
-  text-align: center;
   font-weight: 200;
   font-size: 40px;
   margin: 0;
@@ -87,10 +115,14 @@ hr {
   font-family: "Comfortaa", cursive;
 }
 
-#temp {
-  text-align: right;
-  margin: 0;
-  margin-right: 30px;
+#temp-today {
+  font-size: 50px;
+  line-height: 1;
+}
+
+#units {
+  position: relative;
+  top: -34px;
 }
 
 .btn#current-location {
@@ -112,4 +144,5 @@ hr {
   font-weight: lighter;
   font-size: 10px;
   color: #00bef2a4;
+  margin: 0;
 }
