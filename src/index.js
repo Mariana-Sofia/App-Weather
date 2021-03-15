@@ -52,10 +52,46 @@ let month = months[now.getMonth()];
 let weekDay = days[now.getDay()];
 let dayNumber = now.getDate();
 
+
 //Current Date
 let todayDate = document.querySelector("#time");
 todayDate.innerHTML = `${weekDay}, ${dayNumber} ${month} ${currentHour}:${currentMinutes}`;
 
+function formatDay(timestamp) {
+  let time = new Date(timestamp);
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  return days[time.getDay()];
+}
+
+function getIcon(icon){
+  let iconElement ="";
+  if(icon==="01d") {
+    iconElement = "media/sunny.png";
+  } else if (icon === "01n") {
+    iconElement = "media/moon.png";
+  } else if (icon === "02d") {
+    iconElement = "media/cloudy.png";
+  } else if (icon === "02n") {
+    iconElement = "media/cloudynight.png";
+  } else if (icon === "03d" || icon === "03n") {
+    iconElement = "media/clouds.png";
+  } else if (icon === "04d" || icon === "04n") {
+    iconElement = "media/clouds.png";
+  } else if (icon === "09d" || icon === "09n") {
+    iconElement = "media/drop.png";
+  } else if (icon === "10d") {
+    iconElement = "media/rainday.png";
+  } else if (icon === "10n") {
+    iconElement = "media/nightrain.png";
+  } else if (icon === "11d" || icon === "11n") {
+    iconElement = "media/storm.png";
+  } else if (icon === "13d" || icon === "13n") {
+    iconElement = "media/snowflake.png";
+  } else if (icon === "50d" || icon === "50n") {
+    iconElement = "media/mist.png";
+  }
+  return iconElement;
+}
 
 function showTemp(response){
   console.log(response.data);
@@ -70,35 +106,41 @@ function showTemp(response){
 
   temperature.innerHTML=Math.round(celsiusTemperature);
   city.innerHTML=response.data.name;
-  description.innerHTML =`🌞 ${response.data.weather[0].description}`;
+  description.innerHTML =`${response.data.weather[0].description}`;
   humidity.innerHTML = `💧 ${response.data.main.humidity}%`;
-  wind.innerHTML = `🌬 ${Math.round(response.data.wind.speed)} Km/h`;
+  wind.innerHTML =`💨 ${Math.round(response.data.wind.speed)} Km/h`;
   
-  icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  icon.setAttribute("src",getIcon(response.data.weather[0].icon));
+
+  let apiKey = "b807e5d3242a76539b823cd416c767ae";
+  let units = "metric";
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&exclude=minutely,alerts&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showForecast);
 }
 
-function showNextHours(response) {
-  let nextHoursForecast = document.querySelector("#forecast");
-  nextHoursForecast.innerHTML = null;
+function showForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
   let forecast = null;
 
-  for (let index = 0; index < 4; index++) {
-    forecast = response.data.list[index];
-    nextHoursForecast.innerHTML += `
+  for (let index = 1; index < 5; index++) {
+    console.log(response.data.daily)
+    forecast = response.data.daily[index];
+    forecastElement.innerHTML += `
     <div class="col-3">
       <h3>
-        ${formatHours(forecast.dt * 1000)}
+        ${formatDay(forecast.dt * 1000)}
       </h3>
       <img
-        src="http://openweathermap.org/img/wn/${
-          forecast.weather[0].icon
-        }@2x.png"
+        src="${getIcon(forecast.weather[0].icon)}"
+        alt="weather-icon"
+        class="forecast-weather-icon"
       />
       <div class="next-weather-temperature">
         <strong>
-          ${Math.round(forecast.main.temp_max)}°
-        </strong>
-        ${Math.round(forecast.main.temp_min)}°
+          ${Math.round(forecast.temp.max)}° 
+        </strong> / 
+        ${Math.round(forecast.temp.min)}°
       </div>
     </div>
   `;
@@ -111,7 +153,7 @@ function search(city) {
   axios.get(apiUrl).then(showTemp);
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showNextHours);
+  axios.get(apiUrl).then(showForecast);
 }
 
 function searchButton(event) {
@@ -129,7 +171,7 @@ function searchMyCity(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
   let apiUrlCity = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrlCity).then(showNextHours);
+  axios.get(apiUrlCity).then(showForecast);
 }
 
 function myCity(event) {
@@ -170,5 +212,5 @@ fahrenheit.addEventListener("click", fahrTemp);
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", celsiusTemp);
 
-search("Lisbon");
+search("Vilar");
 
